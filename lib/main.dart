@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:preferences_app/screens/screens.dart';
+import 'package:preferences_app/share_preferences/preferences.dart';
 
-void main() => runApp( const MyApp());
+void main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Preferences.init();
+
+  runApp( const MyApp());
+}
 
 class MyApp extends StatelessWidget {
 
@@ -9,6 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
@@ -17,6 +26,7 @@ class MyApp extends StatelessWidget {
         HomeScreen.routeName    : ( _ ) => const HomeScreen(),
         SettingsScreen.routeName: ( _ ) => const SettingsScreen(),
       },
+      theme:ThemeData.light(),
       
     );
   }
